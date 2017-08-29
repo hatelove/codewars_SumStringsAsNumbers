@@ -11,6 +11,12 @@ namespace codewars_SumStringsAsNumbers
             SumShouldBe("1", "2", "3");
         }
 
+        [TestMethod]
+        public void string_4_and_8_should_be_12()
+        {
+            SumShouldBe("4","8","12");
+        }
+
         private static void SumShouldBe(string a, string b, string expected)
         {
             string actual = Kata.sumStrings(a, b);
