@@ -9,11 +9,11 @@ namespace codewars_SumStringsAsNumbers
     {
         public static string sumStrings(string a, string b)
         {
-            var reverseA = GettReverseChars(a);
-            var reverseB = GettReverseChars(b);
+            var reverseA = GetReverseChars(a);
+            var reverseB = GetReverseChars(b);
 
             var sumOfEachChar = new List<string>();
-            var maxLength = Math.Max(a.Length, b.Length);
+            var maxLength = Math.Max(reverseA.Length, reverseB.Length);
 
             for (int i = 0; i < maxLength; i++)
             {
@@ -39,7 +39,7 @@ namespace codewars_SumStringsAsNumbers
             return Convert.ToInt16(chars[index].ToString());
         }
 
-        private static char[] GettReverseChars(string originalString)
+        private static char[] GetReverseChars(string originalString)
         {
             return originalString.ToCharArray().Reverse().ToArray();
         }
