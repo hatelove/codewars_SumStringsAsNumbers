@@ -23,6 +23,12 @@ namespace codewars_SumStringsAsNumbers
             SumShouldBe("24", "3", "27");
         }
 
+        [TestMethod]
+        public void string_12_and_46_should_be_58()
+        {
+            SumShouldBe("12", "46", "58");
+        }
+
         private static void SumShouldBe(string a, string b, string expected)
         {
             string actual = Kata.sumStrings(a, b);
