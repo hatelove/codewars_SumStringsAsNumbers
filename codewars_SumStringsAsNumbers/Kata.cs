@@ -6,9 +6,9 @@ public static class Kata
 {
     public static string sumStrings(string a, string b)
     {
-        var sumOfEachChar = ReverseSumOfEachChar(Reverse(a), Reverse(b));
+        var sums = Sum(a, b);
 
-        return string.Concat(sumOfEachChar).TrimStart('0');
+        return string.Concat(sums).TrimStart('0');
     }
 
     private static short GetNumberByIndex(string s, int index)
@@ -43,8 +43,8 @@ public static class Kata
         return new string(originalString.ToCharArray().Reverse().ToArray());
     }
 
-    private static IEnumerable<string> ReverseSumOfEachChar(string a, string b)
+    private static IEnumerable<string> Sum(string a, string b)
     {
-        return GetSumOfEachChar(a, b).Reverse();
+        return GetSumOfEachChar(Reverse(a), Reverse(b)).Reverse();
     }
 }
