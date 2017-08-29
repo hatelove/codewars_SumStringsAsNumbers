@@ -45,20 +45,37 @@ namespace codewars_SumStringsAsNumbers
             var sumOfEachChar = new List<string>();
             var maxLength = Math.Max(a.Length, b.Length);
 
+            var isCarry = false;
             for (int i = 0; i < maxLength; i++)
             {
-                var sumOfCurrentChar = SumOfSomeChar(a, b, i);
-                sumOfEachChar.Add(sumOfCurrentChar);
+                var carry = isCarry ? 1 : 0;
+                var sumOfCurrentChar = SumOfSomeChar(a, b, i) + carry;
+                if (sumOfCurrentChar >= 10)
+                {
+                    isCarry = true;
+                    sumOfCurrentChar -= 10;
+                }
+                else
+                {
+                    isCarry = false;
+                }
+
+                sumOfEachChar.Add(sumOfCurrentChar.ToString());
+            }
+
+            if (isCarry)
+            {
+                sumOfEachChar.Add("1");
             }
 
             sumOfEachChar.Reverse();
             return sumOfEachChar;
         }
 
-        private static string SumOfSomeChar(char[] reverseA, char[] reverseB, int index)
+        private static int SumOfSomeChar(char[] reverseA, char[] reverseB, int index)
         {
             var singleSum = GetNumberByIndex(reverseA, index) + GetNumberByIndex(reverseB, index);
-            return singleSum.ToString();
+            return singleSum;
         }
     }
 }
