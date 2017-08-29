@@ -9,8 +9,8 @@ namespace codewars_SumStringsAsNumbers
     {
         public static string sumStrings(string a, string b)
         {
-            var reverseA = a.ToCharArray().Reverse().ToArray();
-            var reverseB = b.ToCharArray().Reverse().ToArray();
+            var reverseA = GettReverseChars(a);
+            var reverseB = GettReverseChars(b);
 
             var sumOfEachChar = new List<string>();
             var maxLength = Math.Max(a.Length, b.Length);
@@ -37,6 +37,11 @@ namespace codewars_SumStringsAsNumbers
             }
 
             return Convert.ToInt16(chars[index].ToString());
+        }
+
+        private static char[] GettReverseChars(string originalString)
+        {
+            return originalString.ToCharArray().Reverse().ToArray();
         }
 
         private static string SumOfSomeChar(char[] reverseA, char[] reverseB, int index)
