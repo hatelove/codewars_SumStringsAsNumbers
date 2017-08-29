@@ -8,9 +8,9 @@ namespace codewars_SumStringsAsNumbers
 {
     class Kata
     {
-        public static int sumStrings(string a, string b)
+        public static string sumStrings(string a, string b)
         {
-            throw new NotImplementedException();
+            return Convert.ToString(Convert.ToDecimal(a) + Convert.ToDecimal(b));
         }
     }
 }

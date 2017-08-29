@@ -11,8 +11,8 @@ namespace codewars_SumStringsAsNumbers
         {
             var a = "1";
             var b = "2";
-            var expected = 3;
-            int actual = Kata.sumStrings(a, b);
+            var expected = "3";
+            string actual = Kata.sumStrings(a, b);
             Assert.AreEqual(expected, actual);
         }
     }
