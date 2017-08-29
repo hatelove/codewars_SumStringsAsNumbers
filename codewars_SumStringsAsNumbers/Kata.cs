@@ -7,9 +7,14 @@ namespace codewars_SumStringsAsNumbers
     {
         public static string sumStrings(string a, string b)
         {
-            var singleSum = Convert.ToInt16(a.ToCharArray().First().ToString()) + Convert.ToInt16(b.ToCharArray().First().ToString());
+            var singleSum = GetFirstNumber(a) + GetFirstNumber(b);
 
             return singleSum.ToString();
+        }
+
+        private static short GetFirstNumber(string a)
+        {
+            return Convert.ToInt16(a.ToCharArray().First().ToString());
         }
     }
 }
