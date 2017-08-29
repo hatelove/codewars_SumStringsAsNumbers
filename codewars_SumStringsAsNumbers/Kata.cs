@@ -12,17 +12,19 @@ namespace codewars_SumStringsAsNumbers
             var reverseA = a.ToCharArray().Reverse().ToArray();
             var reverseB = b.ToCharArray().Reverse().ToArray();
 
-            var result = new List<string>();
-            var firstSum = SumOfSomeChar(reverseA, reverseB, 0);
-            result.Add(firstSum);
+            var sumOfEachChar = new List<string>();
+            var maxLength = Math.Max(a.Length, b.Length);
 
-            var secondSum = SumOfSomeChar(reverseA, reverseB, 1);
-            result.Add(secondSum);
+            for (int i = 0; i < maxLength; i++)
+            {
+                var sumOfCurrentChar = SumOfSomeChar(reverseA, reverseB, i);
+                sumOfEachChar.Add(sumOfCurrentChar);
+            }
 
-            result.Reverse();
+            sumOfEachChar.Reverse();
 
             var sum = new StringBuilder();
-            result.ForEach(x => sum.Append(x));
+            sumOfEachChar.ForEach(x => sum.Append(x));
 
             return sum.ToString().TrimStart('0');
         }
