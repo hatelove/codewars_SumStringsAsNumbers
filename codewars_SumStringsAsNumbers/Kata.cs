@@ -29,7 +29,7 @@ public static class Kata
         for (int i = 0; i < maxLength + 1; i++)
         {
             var carry = isCarry ? 1 : 0;
-            var sumOfCurrentChar = SumOfCurrentChar(a, b, i) + carry;
+            var sumOfCurrentChar = GetNumberByIndex(a, i) + GetNumberByIndex(b, i) + carry;
 
             isCarry = sumOfCurrentChar >= 10;
             sumOfCurrentChar = isCarry ? sumOfCurrentChar - 10 : sumOfCurrentChar;
@@ -46,10 +46,5 @@ public static class Kata
     private static IEnumerable<string> ReverseSumOfEachChar(string a, string b)
     {
         return GetSumOfEachChar(a, b).Reverse();
-    }
-
-    private static int SumOfCurrentChar(string a, string b, int index)
-    {
-        return GetNumberByIndex(a, index) + GetNumberByIndex(b, index);
     }
 }
