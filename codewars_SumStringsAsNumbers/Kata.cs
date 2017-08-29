@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace codewars_SumStringsAsNumbers
 {
-    class Kata
+    internal class Kata
     {
         public static string sumStrings(string a, string b)
         {
-            return Convert.ToString(Convert.ToDecimal(a) + Convert.ToDecimal(b));
+            var singleSum = Convert.ToInt16(a.ToCharArray().First().ToString()) + Convert.ToInt16(b.ToCharArray().First().ToString());
+
+            return singleSum.ToString();
         }
     }
 }
