@@ -9,6 +9,7 @@ namespace codewars_SumStringsAsNumbers
     {
         public static string sumStrings(string a, string b)
         {
+            
             var reverseA = GetReverseChars(a);
             var reverseB = GetReverseChars(b);
 
@@ -37,7 +38,7 @@ namespace codewars_SumStringsAsNumbers
 
         private static char[] GetReverseChars(string originalString)
         {
-            return originalString.ToCharArray().Reverse().ToArray();
+            return originalString.Reverse().ToArray();
         }
 
         private static List<string> SumOfEachChar(char[] a, char[] b)
