@@ -9,9 +9,11 @@ namespace codewars_SumStringsAsNumbers
         [TestMethod]
         public void string_1_and_2_sum_Should_be_3()
         {
-            var a = "1";
-            var b = "2";
-            var expected = "3";
+            SumShouldBe("1", "2", "3");
+        }
+
+        private static void SumShouldBe(string a, string b, string expected)
+        {
             string actual = Kata.sumStrings(a, b);
             Assert.AreEqual(expected, actual);
         }
