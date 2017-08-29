@@ -1,82 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace codewars_SumStringsAsNumbers
+public static class Kata
 {
-    internal class Kata
+    public static string sumStrings(string a, string b)
     {
-        public static string sumStrings(string a, string b)
+        var sumOfEachChar = ReverseSumOfEachChar(Reverse(a), Reverse(b));
+
+        return string.Concat(sumOfEachChar).TrimStart('0');
+    }
+
+    private static short GetNumberByIndex(string s, int index)
+    {
+        if (index >= s.Length)
         {
-            
-            var reverseA = GetReverseChars(a);
-            var reverseB = GetReverseChars(b);
-
-            var sumOfEachChar = SumOfEachChar(reverseA, reverseB);
-
-            return ConcatAllSumStrings(sumOfEachChar).TrimStart('0');
+            return 0;
         }
 
-        private static string ConcatAllSumStrings(List<string> sumOfEachChar)
+        return (short)char.GetNumericValue(s, index);
+    }
+
+    private static IEnumerable<string> GetSumOfEachChar(string a, string b)
+    {
+        var maxLength = Math.Max(a.Length, b.Length);
+
+        var isCarry = false;
+        for (int i = 0; i < maxLength + 1; i++)
         {
-            var sum = new StringBuilder();
-            sumOfEachChar.ForEach(x => sum.Append(x));
+            var carry = isCarry ? 1 : 0;
+            var sumOfCurrentChar = SumOfSomeChar(a, b, i) + carry;
 
-            return sum.ToString();
+            isCarry = sumOfCurrentChar >= 10;
+            sumOfCurrentChar = isCarry ? sumOfCurrentChar - 10 : sumOfCurrentChar;
+
+            yield return sumOfCurrentChar.ToString();
         }
+    }
 
-        private static short GetNumberByIndex(char[] chars, int index)
-        {
-            if (index >= chars.Length)
-            {
-                return 0;
-            }
+    private static string Reverse(string originalString)
+    {
+        return new string(originalString.ToCharArray().Reverse().ToArray());
+    }
 
-            return Convert.ToInt16(chars[index].ToString());
-        }
+    private static IEnumerable<string> ReverseSumOfEachChar(string a, string b)
+    {
+        return GetSumOfEachChar(a, b).Reverse();
+    }
 
-        private static char[] GetReverseChars(string originalString)
-        {
-            return originalString.Reverse().ToArray();
-        }
-
-        private static List<string> SumOfEachChar(char[] a, char[] b)
-        {
-            var sumOfEachChar = new List<string>();
-            var maxLength = Math.Max(a.Length, b.Length);
-
-            var isCarry = false;
-            for (int i = 0; i < maxLength; i++)
-            {
-                var carry = isCarry ? 1 : 0;
-                var sumOfCurrentChar = SumOfSomeChar(a, b, i) + carry;
-                if (sumOfCurrentChar >= 10)
-                {
-                    isCarry = true;
-                    sumOfCurrentChar -= 10;
-                }
-                else
-                {
-                    isCarry = false;
-                }
-
-                sumOfEachChar.Add(sumOfCurrentChar.ToString());
-            }
-
-            if (isCarry)
-            {
-                sumOfEachChar.Add("1");
-            }
-
-            sumOfEachChar.Reverse();
-            return sumOfEachChar;
-        }
-
-        private static int SumOfSomeChar(char[] reverseA, char[] reverseB, int index)
-        {
-            var singleSum = GetNumberByIndex(reverseA, index) + GetNumberByIndex(reverseB, index);
-            return singleSum;
-        }
+    private static int SumOfSomeChar(string a, string b, int index)
+    {
+        return GetNumberByIndex(a, index) + GetNumberByIndex(b, index);
     }
 }
