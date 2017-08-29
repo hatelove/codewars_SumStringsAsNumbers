@@ -12,21 +12,17 @@ namespace codewars_SumStringsAsNumbers
             var reverseA = GetReverseChars(a);
             var reverseB = GetReverseChars(b);
 
-            var sumOfEachChar = new List<string>();
-            var maxLength = Math.Max(reverseA.Length, reverseB.Length);
+            var sumOfEachChar = SumOfEachChar(reverseA, reverseB);
 
-            for (int i = 0; i < maxLength; i++)
-            {
-                var sumOfCurrentChar = SumOfSomeChar(reverseA, reverseB, i);
-                sumOfEachChar.Add(sumOfCurrentChar);
-            }
+            return ConcatAllSumStrings(sumOfEachChar).TrimStart('0');
+        }
 
-            sumOfEachChar.Reverse();
-
+        private static string ConcatAllSumStrings(List<string> sumOfEachChar)
+        {
             var sum = new StringBuilder();
             sumOfEachChar.ForEach(x => sum.Append(x));
 
-            return sum.ToString().TrimStart('0');
+            return sum.ToString();
         }
 
         private static short GetNumberByIndex(char[] chars, int index)
@@ -42,6 +38,21 @@ namespace codewars_SumStringsAsNumbers
         private static char[] GetReverseChars(string originalString)
         {
             return originalString.ToCharArray().Reverse().ToArray();
+        }
+
+        private static List<string> SumOfEachChar(char[] a, char[] b)
+        {
+            var sumOfEachChar = new List<string>();
+            var maxLength = Math.Max(a.Length, b.Length);
+
+            for (int i = 0; i < maxLength; i++)
+            {
+                var sumOfCurrentChar = SumOfSomeChar(a, b, i);
+                sumOfEachChar.Add(sumOfCurrentChar);
+            }
+
+            sumOfEachChar.Reverse();
+            return sumOfEachChar;
         }
 
         private static string SumOfSomeChar(char[] reverseA, char[] reverseB, int index)
